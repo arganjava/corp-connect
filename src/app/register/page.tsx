@@ -6,16 +6,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Logo } from '@/components/icons/Logo';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation'; // Use next/navigation for App Router
+import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
 
-  const handleLogin = (event: React.FormEvent) => {
+  const handleRegister = (event: React.FormEvent) => {
     event.preventDefault();
-    // Add login logic here
-    // For now, redirect to dashboard
-    router.push('/dashboard');
+    // Add registration logic here
+    // For now, redirect to login or dashboard
+    router.push('/dashboard'); 
   };
 
   return (
@@ -23,11 +23,15 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="items-center text-center">
           <Logo className="mb-4 h-12 w-auto" />
-          <CardTitle className="font-headline text-2xl">Welcome Back</CardTitle>
-          <CardDescription>Enter your credentials to access your account.</CardDescription>
+          <CardTitle className="font-headline text-2xl">Create Account</CardTitle>
+          <CardDescription>Join CorpConnect to manage your finances efficiently.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleRegister} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="bankName">Bank Name</Label>
+              <Input id="bankName" type="text" placeholder="Your Bank Inc." required />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" placeholder="you@example.com" required />
@@ -36,16 +40,20 @@ export default function LoginPage() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" placeholder="••••••••" required />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Input id="confirmPassword" type="password" placeholder="••••••••" required />
+            </div>
             <Button type="submit" className="w-full">
-              Login
+              Register
             </Button>
           </form>
         </CardContent>
         <CardFooter className="flex-col items-center">
           <p className="text-sm text-muted-foreground">
-            Don&apos;t have an account?{' '}
-            <Link href="/register" className="font-medium text-primary hover:underline">
-              Register
+            Already have an account?{' '}
+            <Link href="/" className="font-medium text-primary hover:underline">
+              Login
             </Link>
           </p>
         </CardFooter>
