@@ -3,7 +3,7 @@
 import AppShell from '@/components/layout/AppShell';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRightLeft, PlusCircle, ListOrdered, CreditCard } from 'lucide-react';
+import { ArrowRightLeft, PlusCircle, ListOrdered, CreditCard, ArrowDownToLine } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -52,7 +52,7 @@ export default function DashboardPage() {
 
         <section className="space-y-4">
           <h2 className="font-headline text-2xl font-semibold">Quick Actions</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
             <Link href="/transfers" passHref>
               <Button variant="outline" className="w-full justify-start h-20 p-4 text-left shadow hover:shadow-md transition-shadow">
                 <ArrowRightLeft className="mr-3 h-6 w-6 text-primary" />
@@ -77,6 +77,15 @@ export default function DashboardPage() {
                  <div>
                   <p className="font-semibold">View Transactions</p>
                   <p className="text-sm text-muted-foreground">Check your transaction history.</p>
+                </div>
+              </Button>
+            </Link>
+            <Link href="/withdraw" passHref>
+              <Button variant="outline" className="w-full justify-start h-20 p-4 text-left shadow hover:shadow-md transition-shadow">
+                <ArrowDownToLine className="mr-3 h-6 w-6 text-primary" />
+                <div>
+                  <p className="font-semibold">Withdraw Funds</p>
+                  <p className="text-sm text-muted-foreground">Transfer funds to your bank.</p>
                 </div>
               </Button>
             </Link>

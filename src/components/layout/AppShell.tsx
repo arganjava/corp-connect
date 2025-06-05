@@ -35,6 +35,7 @@ import {
   LogOut,
   UserCircle,
   ChevronDown,
+  ArrowDownToLine,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -48,6 +49,7 @@ const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/account-setup', label: 'Account Setup', icon: Settings },
   { href: '/transfers', label: 'Transfers', icon: ArrowRightLeft },
+  { href: '/withdraw', label: 'Withdrawals', icon: ArrowDownToLine },
   { href: '/virtual-accounts', label: 'Virtual Accounts', icon: WalletCards },
   { href: '/transactions', label: 'Transaction History', icon: History },
 ];
