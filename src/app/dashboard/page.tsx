@@ -3,7 +3,7 @@
 import AppShell from '@/components/layout/AppShell';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRightLeft, PlusCircle, ListOrdered } from 'lucide-react';
+import { ArrowRightLeft, PlusCircle, ListOrdered, CreditCard } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -41,7 +41,7 @@ export default function DashboardPage() {
           <Card className="shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Active Virtual Accounts</CardTitle>
-              <WalletCards className="h-5 w-5 text-muted-foreground" />
+              <CreditCard className="h-5 w-5 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">25</div>
