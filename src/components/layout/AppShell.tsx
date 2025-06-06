@@ -38,7 +38,8 @@ import {
   ChevronDown,
   ArrowDownToLine,
   UserCog,
-  Activity, // Added Activity icon
+  Activity,
+  PlugZap, // Added PlugZap icon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -57,7 +58,8 @@ const navItems: NavItem[] = [
   { href: '/virtual-accounts', label: 'Virtual Accounts', icon: WalletCards, matchStartsWith: true },
   { href: '/transactions', label: 'Transaction History', icon: History },
   { href: '/user-management', label: 'User Management', icon: UserCog, matchStartsWith: true },
-  { href: '/user-activity', label: 'User Activity', icon: Activity, matchStartsWith: true }, // New Nav Item
+  { href: '/user-activity', label: 'User Activity', icon: Activity, matchStartsWith: true },
+  { href: '/integration', label: 'Integration', icon: PlugZap, matchStartsWith: true }, // New Nav Item
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
