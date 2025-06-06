@@ -50,7 +50,7 @@ const initialCallbackLogs: CallbackLog[] = [
 ];
 
 const LOG_STATUS_TYPES = ['All', 'Success', 'Failed', 'Pending'];
-const LOGS_PER_PAGE = 10;
+const LOGS_PER_PAGE = 3; // Adjusted for better pagination visibility with mock data
 
 export default function IntegrationPage() {
   const { toast } = useToast();
