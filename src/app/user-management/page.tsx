@@ -32,7 +32,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { PlusCircle, Edit3, Trash2, UserCog, Mail, Shield, LogIn, Search, ChevronDown, ChevronUp } from 'lucide-react';
+import { PlusCircle, Edit3, Trash2, UserCog, Mail, Shield, LogIn, Search, ChevronDown, ChevronUp, UserCircle } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 
 type UserRole = 'Admin' | 'Manager' | 'User';
@@ -361,3 +361,4 @@ export default function UserManagementPage() {
     </AppShell>
   );
 }
+
