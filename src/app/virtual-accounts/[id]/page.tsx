@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import AppShell from '@/components/layout/AppShell';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import {
   Table,
   TableBody,
@@ -206,3 +207,4 @@ export default function VirtualAccountDetailPage() {
     </AppShell>
   );
 }
+
