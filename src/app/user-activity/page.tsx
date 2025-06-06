@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import AppShell from '@/components/layout/AppShell';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -55,11 +55,16 @@ const ACTION_TYPES = ['All', 'Logged In', 'Logged Out', 'Viewed Page', 'Viewed D
 const ITEMS_PER_PAGE = 10;
 
 export default function UserActivityPage() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
   const [actionTypeFilter, setActionTypeFilter] = useState<string>('All');
   const [userFilter, setUserFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const filteredActivityLogs = useMemo(() => {
     return initialActivityLogs.filter(log => {
@@ -157,7 +162,9 @@ export default function UserActivityPage() {
                 <TableBody>
                   {paginatedActivityLogs.map((log) => (
                     <TableRow key={log.id}>
-                      <TableCell className="font-mono text-xs">{format(new Date(log.timestamp), "yyyy-MM-dd HH:mm:ss")}</TableCell>
+                      <TableCell className="font-mono text-xs">
+                        {hasMounted ? format(new Date(log.timestamp), "yyyy-MM-dd HH:mm:ss") : log.timestamp.substring(0, 10)}
+                      </TableCell>
                       <TableCell>{log.userName}</TableCell>
                       <TableCell>{log.action}</TableCell>
                       <TableCell className="max-w-xs truncate">{log.details}</TableCell>
