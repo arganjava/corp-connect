@@ -37,7 +37,8 @@ import {
   UserCircle,
   ChevronDown,
   ArrowDownToLine,
-  UserCog, // Added UserCog icon
+  UserCog,
+  Activity, // Added Activity icon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -45,6 +46,7 @@ interface NavItem {
   href: string;
   label: string;
   icon: React.ElementType;
+  matchStartsWith?: boolean;
 }
 
 const navItems: NavItem[] = [
@@ -52,9 +54,10 @@ const navItems: NavItem[] = [
   { href: '/account-setup', label: 'Account Setup', icon: Settings },
   { href: '/transfers', label: 'Transfers', icon: ArrowRightLeft },
   { href: '/withdraw', label: 'Withdrawals', icon: ArrowDownToLine },
-  { href: '/virtual-accounts', label: 'Virtual Accounts', icon: WalletCards },
+  { href: '/virtual-accounts', label: 'Virtual Accounts', icon: WalletCards, matchStartsWith: true },
   { href: '/transactions', label: 'Transaction History', icon: History },
-  { href: '/user-management', label: 'User Management', icon: UserCog }, // New Nav Item
+  { href: '/user-management', label: 'User Management', icon: UserCog, matchStartsWith: true },
+  { href: '/user-activity', label: 'User Activity', icon: Activity, matchStartsWith: true }, // New Nav Item
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
@@ -82,7 +85,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 <Link href={item.href} legacyBehavior passHref>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === item.href || (item.href === '/user-management' && pathname.startsWith('/user-management'))}
+                    isActive={item.matchStartsWith ? pathname.startsWith(item.href) : pathname === item.href}
                     tooltip={{ children: item.label, className: "ml-2" }}
                   >
                     <a>
