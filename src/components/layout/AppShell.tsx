@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState } from 'react';
@@ -36,6 +37,7 @@ import {
   UserCircle,
   ChevronDown,
   ArrowDownToLine,
+  UserCog, // Added UserCog icon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -52,6 +54,7 @@ const navItems: NavItem[] = [
   { href: '/withdraw', label: 'Withdrawals', icon: ArrowDownToLine },
   { href: '/virtual-accounts', label: 'Virtual Accounts', icon: WalletCards },
   { href: '/transactions', label: 'Transaction History', icon: History },
+  { href: '/user-management', label: 'User Management', icon: UserCog }, // New Nav Item
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
@@ -79,7 +82,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 <Link href={item.href} legacyBehavior passHref>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === item.href}
+                    isActive={pathname === item.href || (item.href === '/user-management' && pathname.startsWith('/user-management'))}
                     tooltip={{ children: item.label, className: "ml-2" }}
                   >
                     <a>
