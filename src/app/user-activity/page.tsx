@@ -43,9 +43,15 @@ const initialActivityLogs: UserActivityLog[] = [
   { id: 'LOG005', timestamp: '2024-07-26T09:15:00Z', userName: 'System Admin', action: 'Deleted Virtual Account', details: 'VA ID: VA003 (Marketing Campaign Q3)', ipAddress: '10.0.0.1' },
   { id: 'LOG006', timestamp: '2024-07-26T11:00:00Z', userName: 'Eve Wilson', action: 'Generated VA', details: 'VA ID: VA011 (Client D Payments)', ipAddress: '172.16.0.5' },
   { id: 'LOG007', timestamp: '2024-07-25T16:45:00Z', userName: 'Bob Williams', action: 'Logged Out', details: 'User logged out successfully.', ipAddress: '203.0.113.45' },
+  { id: 'LOG008', timestamp: '2024-07-29T09:00:00Z', userName: 'Alice Johnson', action: 'Viewed Transactions', details: 'Accessed transaction history page.', ipAddress: '192.168.1.10' },
+  { id: 'LOG009', timestamp: '2024-07-29T11:20:00Z', userName: 'Bob Williams', action: 'Exported Data', details: 'Exported transaction list as CSV.', ipAddress: '203.0.113.45' },
+  { id: 'LOG010', timestamp: '2024-07-29T14:00:00Z', userName: 'Eve Wilson', action: 'Changed Settings', details: 'Updated notification preferences.', ipAddress: '172.16.0.5' },
+  { id: 'LOG011', timestamp: '2024-07-30T08:30:00Z', userName: 'Alice Johnson', action: 'Created User', details: 'Added new user: test@example.com.', ipAddress: '192.168.1.10' },
+  { id: 'LOG012', timestamp: '2024-07-30T10:15:00Z', userName: 'System Admin', action: 'System Update', details: 'Performed routine maintenance.', ipAddress: '10.0.0.1' },
+  { id: 'LOG013', timestamp: '2024-07-30T16:00:00Z', userName: 'Bob Williams', action: 'Failed Login Attempt', details: 'Incorrect password for user bob@example.com.', ipAddress: '203.0.113.45' },
 ];
 
-const ACTION_TYPES = ['All', 'Logged In', 'Logged Out', 'Viewed Page', 'Created Item', 'Updated Item', 'Deleted Item', 'Generated Report', 'System Event'];
+const ACTION_TYPES = ['All', 'Logged In', 'Logged Out', 'Viewed Page', 'Viewed Dashboard', 'Viewed Transactions', 'Created Item', 'Created Transfer', 'Created User', 'Updated Item', 'Updated User Profile', 'Changed Settings', 'Deleted Item', 'Deleted Virtual Account', 'Generated VA', 'Generated Report', 'Exported Data', 'System Event', 'System Update', 'Failed Login Attempt'];
 const ITEMS_PER_PAGE = 10;
 
 export default function UserActivityPage() {
@@ -67,7 +73,7 @@ export default function UserActivityPage() {
       const matchesDate = !dateRange || !dateRange.from || !dateRange.to || 
                           (logDate >= dateRange.from && logDate <= dateRange.to);
 
-      const matchesActionType = actionTypeFilter === 'All' || log.action.toLowerCase().includes(actionTypeFilter.toLowerCase());
+      const matchesActionType = actionTypeFilter === 'All' || log.action === actionTypeFilter || (actionTypeFilter !== 'All' && log.action.toLowerCase().includes(actionTypeFilter.toLowerCase()));
       const matchesUser = userFilter === '' || log.userName.toLowerCase().includes(userFilter.toLowerCase());
 
       return matchesSearch && matchesDate && matchesActionType && matchesUser;
