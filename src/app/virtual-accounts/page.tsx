@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState } from 'react';
@@ -25,6 +26,7 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { PlusCircle, Copy, Eye, Trash2, Edit3 } from 'lucide-react';
+import Link from 'next/link';
 
 interface VirtualAccount {
   id: string;
@@ -51,8 +53,8 @@ export default function VirtualAccountsPage() {
   const handleGenerateVA = (event: React.FormEvent) => {
     event.preventDefault();
     const newVA: VirtualAccount = {
-      id: `VA${String(virtualAccounts.length + 1).padStart(3, '0')}`,
-      customId: newVACustomId,
+      id: `VA${String(virtualAccounts.length + 1 + Math.floor(Math.random() * 100)).padStart(3, '0')}`,
+      customId: newVACustomId || `SYS-GEN-${Date.now().toString().slice(-4)}`,
       purpose: newVAPurpose,
       creationDate: new Date().toISOString().split('T')[0],
       status: 'Active',
@@ -168,10 +170,12 @@ export default function VirtualAccountsPage() {
                       <TableCell className="text-right">${va.balance.toFixed(2)}</TableCell>
                       <TableCell className="text-center">
                         <div className="flex items-center justify-center space-x-1">
-                          <Button variant="ghost" size="icon" title="View Details">
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                           <Button variant="ghost" size="icon" title="Edit (Placeholder)">
+                          <Link href={`/virtual-accounts/${va.id}`} passHref>
+                            <Button variant="ghost" size="icon" title="View Details">
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                          </Link>
+                           <Button variant="ghost" size="icon" title="Edit (Placeholder)"> {/* Add edit functionality later */}
                             <Edit3 className="h-4 w-4" />
                           </Button>
                           <Button variant="ghost" size="icon" title="Delete" onClick={() => handleDeleteVA(va.id)}>
